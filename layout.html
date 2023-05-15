@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chess Game</title>
+    <link rel="stylesheet"   type  =" text/css"  href="css/style.css">
+</head>
+<body>
+    <div class= "chessboard">
+    <script>
+        for(let row = 1; row <= 8; row++){
+            for(let col = 1; col <=8; col++){
+                document.write(`<div class = "square" id = "${row}${col}"></div>`)
+            }
+        }
+    </script>
+    
+    <div class = "square"></div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
