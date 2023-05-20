@@ -72,8 +72,24 @@ function handleSquareClick(event){
     const squareId = clickedSquare.id;
 }
 
+//get the piece at the clicked square if any
+const piece = getPieceAtSquare(squareId);
 
-//we need to create the functionality of validating game moves since we used the 
-// the constructor to create the game pieces for this.
+//check if the piece is already selected
+if(selectedPiece){
+    if(isValidMove(selectedPiece, squareId))
+    {
+        movePiece(selectedPiece, squareId);
+    }
 
-//first
+    selectedPiece = null;
+    removeHighlight();
+}
+else{
+    // no piece is currently selected
+    //check if a valid piece is clicjed and highlight it
+    if(piece && piece.color == currentPlayer){
+        selectedPiece = piece;
+        highlightSquare(squareId);
+    }
+}
