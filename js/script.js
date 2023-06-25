@@ -147,6 +147,7 @@ function isValidMove(piece, targetSquare){
                 return false;
             }
         }
+   
 }
 
         function isPathClearForRook(currentPosition, targetSquare){
@@ -170,6 +171,42 @@ function isValidMove(piece, targetSquare){
 
             return true; // no obstruction found
         }
+    }
+
+    function isCastlingMove(King, targetSquare){
+        //Update the postions of the king and rook
+        const [kingFile, kingRank ] = King.position;
+      const [targetFile, targetRank] =targetSquare; 
+
+        //ensure the target square is two squares away horizontally from the kings position
+        if(Math.abs(King.position.file - targetSquare.file) !== 2 || targetRank !=kingRank){
+            return false;
+           
+
+    }
+    
+    //Verify that the king and rook have not moved
+    if(King.hasMoved || King.Rook.hasMoved){
+        return false;
+    }
+
+// Determine the direction of castling ( left or right)
+
+const direction = targetFile > kingFile ? 'left' : 'right';
+
+const startFile = direction === 'right' ? kingFile + 1 : kingFile -1 ;
+const endFile = direction === 'right' ? targetFile - 1 : targetFile + 1;
+
+for(let i = startFile; i < endFile;){
+    if(ChessBoard[kingRank][file] != null){
+        return false;
+    }
+}
+
+return true;
+}
+    
+    
        
 
 
@@ -214,5 +251,4 @@ function removeHighlight(){
     const highlightedsquares = document.querySelectorAll('.highlight');
     highlightedsquares.forEach(square => square.classList.remove('highlight'));
 
-}
 }
